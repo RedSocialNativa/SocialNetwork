@@ -31,6 +31,7 @@
 			<a href="#"><i class="fa fa-bell-o fa-lg"></i></a>
 			<a href="#"><i class="fa fa-users fa-lg"></i></a>
 			<a href="#"><i class="fa fa-cog fa-lg"></i></a>
+			<a href="includes/handlers/logout.php"><i class="fa fa-sign-out fa-lg"></i></a>
 		</nav>
 	</div>
 	<div class="wrapper">

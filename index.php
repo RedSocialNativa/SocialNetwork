@@ -1,6 +1,12 @@
 <?php 
 include("includes/header.php");
 include("includes/classes/User.php");
+include("includes/classes/Post.php");
+
+if (isset($_POST['post'])) {
+	$post = new Post($con, $userLoggedIn);
+	$post->submitPost($_POST['post_text'], 'none');
+}
 ?>
 	<div class="user_details column">
 		<a href="<?php echo $userLoggedIn; ?>"><img src="<?php echo $user['profile_pic'];?>"></a>
