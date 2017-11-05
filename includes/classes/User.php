@@ -28,7 +28,7 @@ class User{
 	}
 
 	public function isClosed(){
-		$username = this->user['username'];
+		$username = $this->user['username'];
 		$query = mysqli_query($this->con, "SELECT user_closed FROM users WHERE username = '$username'");
 		$row = mysqli_fetch_array($query);
 		

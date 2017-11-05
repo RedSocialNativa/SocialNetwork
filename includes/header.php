@@ -1,4 +1,6 @@
 <?php
+	//error_reporting(E_ALL);
+	//ini_set(‘display_errors’,’On’);
 	require 'config/config.php';
 	if (isset($_SESSION['username'])) {
 		$userLoggedIn = $_SESSION['username'];
