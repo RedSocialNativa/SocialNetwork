@@ -22,14 +22,30 @@ if (isset($_POST['post'])) {
 		<form class="post_form" action="index.php" method="POST">
 			<textarea name="post_text" id="post_text" placeholder="Got something to say?"></textarea>
 			<input type="submit" name="post" id="post_button" value="Post">
-			<br>
+			<hr>
 		</form>
-		<?php 
-		$post = new Post($con, $userLoggedIn);
-		$post->loadPostsFriends();
-
-		?>
+		<div class="posts_area"></div>
+		<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
+
+	<script type="text/javascript">
+		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+		$(document).ready(function(){
+			$('#loading').show();
+
+			//Original ajax request for loading first posts
+			$.ajax({
+				url: "includes/handlers/ajax_load_posts.php",
+				type: "POST",
+				data: "page=1&userLoggedIn=" + userLoggedIn,
+				cache: false,
+				success: function(data){
+					$('#loading').hide();
+					$('.posts_area').html(data);
+				}
+			});
+		});
+	</script>
 
 	</div>
 </body>
