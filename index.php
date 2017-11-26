@@ -31,6 +31,7 @@ if (isset($_POST['post'])) {
 	<script type="text/javascript">
 		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 		$(document).ready(function(){
+			//alert("hrllo");
 			$('#loading').show();
 
 			//Original ajax request for loading first posts
@@ -44,6 +45,37 @@ if (isset($_POST['post'])) {
 					$('.posts_area').html(data);
 				}
 			});
+
+			$(window).scroll(function(){
+				var height = $('.posts_area').height();
+				var scroll_top = $(this).scrollTop();
+				var page = $('.posts_area').find('.nextPage').val();
+				var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+				//alert(noMorePosts);
+				//alert(document.body.scrollHeight);
+				//alert(document.body.scrollTop);
+				//alert(window.innerHeight);
+				//Try using this: document.documentElement.scrollTop. If I am correct document.body.scrollTop is deprecated.
+				if ((document.body.scrollHeight == document.documentElement.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+					//alert("hrllo");
+					$('#loading').show();
+
+					var ajaxReq = $.ajax({
+						url: "includes/handlers/ajax_load_posts.php",
+						type: "POST",
+						data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+						cache: false,
+						success: function(response){
+							$('.posts_area').find('.nextPage').remove();
+							$('.posts_area').find('.noMorePosts').remove();
+
+							$('#loading').hide();
+							$('.posts_area').append(response);// $("ol").append("<li>Appended item</li>");
+						}
+					});
+				} // end if
+				return false;
+			}); // End $(window).scroll(function())
 		});
 	</script>
 
