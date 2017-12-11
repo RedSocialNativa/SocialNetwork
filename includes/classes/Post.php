@@ -66,10 +66,11 @@ class Post{
 				}
 				//Check if user who posted has their account closed
 				$added_by_obj = new User($this->con, $added_by);
-				if ($added_by_obj->isClosed()) 
+				if ($added_by_obj->isClosed()) {
 					continue;
+				}
 
-				$user_logged_obj = new User($this->con, $added_by);
+				$user_logged_obj = new User($this->con, $userLoggedIn);
 				if ($user_logged_obj->isFriend($added_by)) {
 
 					if($num_iterations++ < $start)
