@@ -6,6 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
+<style type="text/css">
+	*{
+		font-size: 12px;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+</style>
 <?php
 	//error_reporting(E_ALL);
 	//ini_set(‘display_errors’,’On’);
