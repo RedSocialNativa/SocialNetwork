@@ -6,6 +6,18 @@
 	<title>Document</title>
 </head>
 <body>
+	<style type="text/css">
+		*{
+			font-size: Arial, Helvetica, Sans-serif;
+		}
+		body{
+			background-color: #fff;
+		}
+		form{
+			position: absolute;
+			top: 0;
+		}
+	</style>
 <?php
 
 	require 'config/config.php';
