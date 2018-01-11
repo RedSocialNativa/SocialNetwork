@@ -9,6 +9,12 @@ if (isset($_GET['profile_username'])) {
 	$num_friends = (substr_count($user_array['friend_array'], ",")) - 1; //Contar el número de cadenas repetidas
 }
 ?>
+	<style type="text/css">
+		.wrapper{
+			margin-left: 0px;
+			padding-left: 0px;
+		}
+	</style>
 	<div class="profile_left">
 		<img src="<?php echo $user_array['profile_pic']; ?>" alt="No hay imagen">
 		<div class="profile_info">
