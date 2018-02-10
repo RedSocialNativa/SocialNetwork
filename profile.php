@@ -1,7 +1,6 @@
 <?php 
 include("includes/header.php");
-include("includes/classes/User.php");
-include("includes/classes/Post.php");
+
 
 if (isset($_GET['profile_username'])) { //parametro get de la url establecida en .htaccess
 	$username = $_GET['profile_username'];
