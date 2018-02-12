@@ -20,7 +20,7 @@ if (isset($_POST['add_friend'])) {
 	$user->sendRequest($username);
 }
 
-if (isset($_POST['respond_request'])) {
+if (isset($_POST['response_request'])) {
 	header("Location: requests.php");
 }
 ?>

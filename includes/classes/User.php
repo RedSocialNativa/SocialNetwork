@@ -54,9 +54,9 @@ class User{
 
 	public function isFriend($username_to_check){
 		$usernameComma = "," . $username_to_check . ",";
-		if((strstr($this->user['friend_array'], $usernameComma) || $username_to_check == $this->user['username'])) //strstr — Encuentra la primera aparición de un string
+		if((strstr($this->user['friend_array'], $usernameComma) || $username_to_check == $this->user['username'])){ //strstr — Encuentra la primera aparición de un string
 			return true;
-		else
+		}else
 			return false;
 	}
 
