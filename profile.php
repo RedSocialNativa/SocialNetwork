@@ -85,7 +85,7 @@ if (isset($_POST['response_request'])) {
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Post</button>
+					<button type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
 				</div>
 			</div>
 		</div>

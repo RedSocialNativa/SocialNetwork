@@ -18,7 +18,7 @@ class Post{
 			//Get username
 			$added_by = $this->user_obj->getUsername();
 			//if user is on own profile, user_to is 'none'
-			if ($user_to = $added_by) {
+			if ($user_to == $added_by) {
 				$user_to = "none";
 			}
 			//insert post
@@ -62,7 +62,7 @@ class Post{
 				}else{
 					$user_to_obj = new User($this->con, $row['user_to']);
 					$user_to_name = $user_to_obj->getFirstAndLastName();
-					$user_to = "<a href='" . $row['user_to'] . "'>" . $user_to_name . "</a>";
+					$user_to = "to <a href='" . $row['user_to'] . "'>" . $user_to_name . "</a>";
 				}
 				//Check if user who posted has their account closed
 				$added_by_obj = new User($this->con, $added_by);
