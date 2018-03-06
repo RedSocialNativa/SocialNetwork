@@ -62,8 +62,9 @@ if (isset($_POST['response_request'])) {
 		<input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
 	</div>
 
-	<div class="main_column column">
-		<?php echo $username; ?>
+	<div class="profile_main_column column">
+		<div class="posts_area"></div>
+		<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
 
 	<div class="modal fade" id="post_form">
@@ -90,5 +91,57 @@ if (isset($_POST['response_request'])) {
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+		var profileUsername = '<?php echo $username; ?>';
+		$(document).ready(function(){
+			//alert("hrllo");
+			$('#loading').show();
+
+			//Original ajax request for loading first posts
+			$.ajax({
+				url: "includes/handlers/ajax_load_profile_posts.php",
+				type: "POST",
+				data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+				cache: false,
+				success: function(data){
+					$('#loading').hide();
+					$('.posts_area').html(data);
+				}
+			});
+
+			$(window).scroll(function(){
+				var height = $('.posts_area').height();
+				var scroll_top = $(this).scrollTop();
+				var page = $('.posts_area').find('.nextPage').val();
+				var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+				//alert(noMorePosts);
+				//alert(document.body.scrollHeight);
+				//alert(document.body.scrollTop);
+				//alert(window.innerHeight);
+				//Try using this: document.documentElement.scrollTop. If I am correct document.body.scrollTop is deprecated.
+				if ((document.body.scrollHeight == document.documentElement.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+					//alert("hrllo");
+					$('#loading').show();
+
+					var ajaxReq = $.ajax({
+						url: "includes/handlers/ajax_load_profile_posts.php",
+						type: "POST",
+						data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+						cache: false,
+						success: function(response){
+							$('.posts_area').find('.nextPage').remove();
+							$('.posts_area').find('.noMorePosts').remove();
+
+							$('#loading').hide();
+							$('.posts_area').append(response);// $("ol").append("<li>Appended item</li>");
+						}
+					});
+				} // end if
+				return false;
+			}); // End $(window).scroll(function())
+		});
+	</script>
 </body>
 </html>
